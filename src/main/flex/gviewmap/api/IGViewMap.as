@@ -11,7 +11,7 @@ import by.rovar.view.GView;
 
 public interface IGViewMap
 {
-    function addGView(view:GView):void;
-    function removeGView(view:GView):void;
+    function doRemoveView(view:GView):void;
+    function doAddView(view:GView):void;
 }
 }

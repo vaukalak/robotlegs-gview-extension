@@ -43,11 +43,6 @@ public class GViewMediator implements IMediator
     {
     }
 
-    public function postDestroy():void
-    {
-        eventMap.unmapListeners();
-    }
-
     protected function addContextListener(eventString:String, listener:Function, eventClass:Class = null):void
     {
         eventMap.mapListener(eventDispatcher, eventString, listener, eventClass);

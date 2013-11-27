@@ -9,7 +9,8 @@ package gviewmap.impl
 {
 import by.rovar.events.GViewEvent;
 import by.rovar.view.GView;
-import by.rovar.view.GViewStage;
+	import by.rovar.view.GViewContainer;
+	import by.rovar.view.GViewStage;
 
 import gviewmap.api.IGViewMap;
 
@@ -33,12 +34,12 @@ public class GViewMap implements IGViewMap
 
 
 
-    public function addGView(view:GView):void
+    public function doAddView(view:GView):void
     {
         mediatorMap.mediate(view);
     }
 
-    public function removeGView(view:GView):void
+    public function doRemoveView(view:GView):void
     {
         mediatorMap.unmediate(view);
     }
@@ -51,13 +52,28 @@ public class GViewMap implements IGViewMap
 
     private function onGViewRemoved(event:GViewEvent):void
     {
-        removeGView(event.target as GView);
+	    removeView(event.target as GView);
     }
 
+	private function removeView(value:GView) : void {
+		doRemoveView(value);
+		var container : GViewContainer = value as GViewContainer;
+		for(var i:uint = 0; i < container.numChildren; i++){
+			removeView(container.getChildAt(i));
+		}
+	}
 
     private function onGViewAdded(event:GViewEvent):void
     {
-        addGView(event.target as GView);
+	    addView(event.target as GView);
     }
+
+	private function addView(value:GView) : void {
+		doAddView(value);
+		var container : GViewContainer = value as GViewContainer;
+		for(var i:uint = 0; i < container.numChildren; i++){
+			addView(container.getChildAt(i));
+		}
+	}
 }
 }
