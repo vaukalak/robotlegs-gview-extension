@@ -58,8 +58,10 @@ public class GViewMap implements IGViewMap
 	private function removeView(value:GView) : void {
 		doRemoveView(value);
 		var container : GViewContainer = value as GViewContainer;
-		for(var i:uint = 0; i < container.numChildren; i++){
-			removeView(container.getChildAt(i));
+		if(container){
+			for(var i:uint = 0; i < container.numChildren; i++){
+				removeView(container.getChildAt(i));
+			}
 		}
 	}
 
@@ -71,8 +73,10 @@ public class GViewMap implements IGViewMap
 	private function addView(value:GView) : void {
 		doAddView(value);
 		var container : GViewContainer = value as GViewContainer;
-		for(var i:uint = 0; i < container.numChildren; i++){
-			addView(container.getChildAt(i));
+		if(container){
+			for(var i:uint = 0; i < container.numChildren; i++){
+				addView(container.getChildAt(i));
+			}
 		}
 	}
 }
