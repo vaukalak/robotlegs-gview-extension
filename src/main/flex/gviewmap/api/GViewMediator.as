@@ -42,6 +42,10 @@ public class GViewMediator implements IMediator
     public function destroy():void
     {
     }
+    
+    public function postDestroy():void
+    {
+    }
 
     protected function addContextListener(eventString:String, listener:Function, eventClass:Class = null):void
     {
